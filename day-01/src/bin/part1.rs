@@ -1,11 +1,7 @@
 use std::fs;
-use std::env;
-use crate::utils::say_hello;
-
-
 mod utils;
 
-const INPUT_DIR: &str = "../inputs"; // Adjust the relative path as needed
+const INPUT_DIR: &str = "../inputs";  // consider making something like this a template
 
 
 fn main() {
