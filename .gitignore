@@ -3,3 +3,4 @@
 input.txt
 inputs/*
 !inputs/surprise.md
+project_notes/
