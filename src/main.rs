@@ -33,51 +33,57 @@ fn run_command(package: &str, binary: &str) {
 
 fn main() {
     let measure_flag = env::args().any(|arg| arg == "-measure" || arg == "-m");
-
-    let t1 = Instant::now();
+    let mut times = vec![0];
+    let t0 = Instant::now();
     println!("Day 1:");
     run_command("day-01", "part1");
     run_command("day-01", "part2");
 
-    let t2 = Instant::now();
-    if measure_flag {
-        println!("Time elapsed: {:?}", t1.duration_since(t2));
-    }
+    times.push(t0.elapsed().as_millis());
 
     println!("Day 2:");
     run_command("day-02", "part1");
     run_command("day-02", "part2");
 
-    let t3 = Instant::now();
-    if measure_flag {
-        println!("Time elapsed: {:?}", t2.duration_since(t3));
-    }
+    times.push(t0.elapsed().as_millis());
 
     println!("Day 3:");
     run_command("day-03", "part1");
     run_command("day-04", "part2");
 
-    let t4 = Instant::now();
-    if measure_flag {
-        println!("Time elapsed: {:?}", t3.duration_since(t4));
-    }
+    times.push(t0.elapsed().as_millis());
 
     println!("Day 4:");
     run_command("day-04", "part1");
     run_command("day-04", "part2");
 
-    let t5 = Instant::now();
-    if measure_flag {
-        println!("Time elapsed: {:?}", t4.duration_since(t5));
-    }
+    times.push(t0.elapsed().as_millis());
 
     println!("Day 5:");
     run_command("day-05", "part1");
     run_command("day-05", "part2");
 
-    let t6 = Instant::now();
-    if measure_flag {
-        println!("Time elapsed: {:?}", t5.duration_since(t6));
+    times.push(t0.elapsed().as_millis());
+
+    println!("Day 6:");
+    run_command("day-06", "part1");
+    run_command("day-06", "part2");
+
+    times.push(t0.elapsed().as_millis());
+
+    println!("-----------------------------");
+    let new_times: Vec<_> = times
+        .windows(2)
+        .map(|window| {
+            let (x, y) = (window[0], window[1]);
+            (x as i128 - y as i128).abs() as u128
+        })
+        .collect();
+
+    println!("{:<10} {:<15}", "Day", "Time Elapsed (ms)");
+    println!("-----------------------------");
+    for (day, time) in new_times.iter().enumerate() {
+        println!("{:<10} {:<15}", day + 1, time);
     }
 
     println!("Day 6:");
