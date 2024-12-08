@@ -1,10 +1,8 @@
-mod utils;
-
-use crate::utils::read_input_to_string;
+use utils::read_input_to_string;
 
 fn main() {
     let mut score: i32 = 0;
-    let input = read_input_to_string(4, Some(false));
+    let input = read_input_to_string(4);
     let mut xmas_array: Vec<Vec<char>> = Vec::new();
 
     for i in input.lines() {
@@ -115,7 +113,7 @@ fn main() {
         score += a as i32;
     }
 
-    println!("{}", score);
+    println!("Part 1: {}", score);
 }
 
 #[cfg(test)]
@@ -123,7 +121,7 @@ mod tests {
     use super::*;
     #[test]
     fn it_works() {
-        let input = read_input_to_string(4, Some(true));
+        let input = read_input_to_string(4);
         let mut xmas_array: Vec<Vec<char>> = Vec::new();
 
         for i in input.lines() {

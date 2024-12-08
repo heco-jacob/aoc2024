@@ -1,9 +1,8 @@
-mod utils;
-use crate::utils::read_input_to_string;
+use utils::read_input_to_string;
 
 fn main() {
     let mut score: i32 = 0;
-    let input = read_input_to_string(1, Some(false));
+    let input = read_input_to_string(1);
     let mut list_one: Vec<i32> = Vec::new();
     let mut list_two: Vec<i32> = Vec::new();
 
@@ -23,7 +22,7 @@ fn main() {
     for (item_one, item_two) in list_one.iter().zip(&list_two) {
         score += (item_one - item_two).abs();
     }
-    println!("{}", score);
+    println!("Part 1: {}", score);
 }
 
 #[cfg(test)]

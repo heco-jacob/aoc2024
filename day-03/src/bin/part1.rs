@@ -1,13 +1,11 @@
-mod utils;
-
-use crate::utils::read_input_to_string;
 use regex::Regex;
+use utils::read_input_to_string;
 
 // xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))
 
 fn main() {
     let mut score: i32 = 0;
-    let input = read_input_to_string(3, Some(false));
+    let input = read_input_to_string(3);
 
     let re = Regex::new(r"mul\((\d{1,3}),(\d{1,3})\)").unwrap();
 
@@ -17,7 +15,7 @@ fn main() {
         let s: i32 = cap[2].parse().unwrap();
         score += f * s;
     }
-    println!("{}", score);
+    println!("Part 1: {}", score);
 }
 
 #[cfg(test)]

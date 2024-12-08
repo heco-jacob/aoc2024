@@ -1,5 +1,4 @@
-mod utils;
-use crate::utils::read_input_to_string;
+use utils::read_input_to_string;
 
 fn check_validity(vec: &Vec<i32>) -> bool {
     let s_valid = vec
@@ -20,18 +19,17 @@ fn check_validity(vec: &Vec<i32>) -> bool {
 }
 fn main() {
     let mut score: i32 = 0;
-    let input = read_input_to_string(2, Some(false));
-    let mut list_one: Vec<i32> = Vec::new();
+    let input = read_input_to_string(2);
     for line in input.lines() {
         let mut vec: Vec<i32> = line.split(" ").map(|x| x.parse::<i32>().unwrap()).collect();
         if check_validity(&vec) {
             score = score + 1;
-            println!("Safe: {:?}", &vec);
+            // println!("Safe: {:?}", &vec);
         } else {
-            println!("Unsafe: {:?}", &vec);
+            // println!("Unsafe: {:?}", &vec);
         }
     }
-    println!("Final score = {}", score);
+    println!("Part 1: {}", score);
 }
 
 #[cfg(test)]

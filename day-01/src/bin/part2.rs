@@ -1,9 +1,8 @@
-mod utils;
-use crate::utils::read_input_to_string;
+use utils::read_input_to_string;
 
 fn main() {
     let mut score: i32 = 0;
-    let input = read_input_to_string(1, Some(false));
+    let input = read_input_to_string(1);
     let mut list_one: Vec<i32> = Vec::new();
     let mut list_two: Vec<i32> = Vec::new();
 
@@ -21,7 +20,7 @@ fn main() {
         score += i * (list_two.iter().filter(|&&x| x == *i).count() as i32);
     }
 
-    println!("{}", score);
+    println!("Part 2: {}", score);
 }
 
 #[cfg(test)]
