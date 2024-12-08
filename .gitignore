@@ -1,5 +1,7 @@
 .idea/
 */target/
+target/
+
 input.txt
 inputs/*
 !inputs/surprise.md
