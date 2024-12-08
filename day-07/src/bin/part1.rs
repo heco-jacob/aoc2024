@@ -1,14 +1,5 @@
-use itertools::{iproduct, Itertools};
+use itertools::Itertools;
 use utils::read_input_to_string;
-
-fn mul(a: i32, b: i32) -> i32 {
-    a * b
-}
-
-fn add(a: i32, b: i32) -> i32 {
-    a + b
-}
-
 
 use std::fmt;
 
@@ -22,11 +13,11 @@ impl NamedFunction {
         match self {
             NamedFunction::Add => x + y,
             NamedFunction::Mul => x * y,
-
         }
     }
 }
 
+// see example from chess engine
 impl fmt::Debug for NamedFunction {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
@@ -39,54 +30,41 @@ impl fmt::Debug for NamedFunction {
 fn main() {
     let mut score: i64 = 0;
     let input = read_input_to_string(7);
-
     let functions: Vec<NamedFunction> = vec![NamedFunction::Add, NamedFunction::Mul];
 
-
-
-
     for line in input.lines() {
-
-
         let parts: Vec<&str> = line.split(':').collect();
         if parts.len() == 2 {
-
             let mut run = true;
-
-            let target: i64 = parts[0].trim().parse::<i64>().expect("Failed to parse the number");
-
+            let target: i64 = parts[0]
+                .trim()
+                .parse::<i64>()
+                .expect("Failed to parse the number");
             let values: Vec<i64> = parts[1]
                 .split_whitespace()
                 .filter_map(|s| s.parse::<i64>().ok())
                 .collect();
 
-            if values.len() < 2 {
-                println!("Need at least two values to apply functions.");
-                continue;
-            }
-
-            // Generate all possible combinations of functions for (values.len() - 1)
             let func_combinations = (0..values.len() - 1)
                 .map(|_| functions.iter())
-                .multi_cartesian_product();
+                .multi_cartesian_product(); // creates a MultiProduct iterator, that can be collected to inspect
+
+            // like this:
+            // let collection = func_combinations.clone().collect::<Vec<_>>();
 
             for func_combination in func_combinations {
-                let mut iter = values.iter().copied();
-                let mut result: i64 = iter.next().unwrap(); // Start with the first number
+                let mut result = values[0];
+                let mut iter = values.iter().skip(1);
                 if run {
                     for (value, func) in iter.zip(func_combination) {
-                        result = func.apply(result, value);
+                        result = func.apply(result, *value);
                         // Compare with target
                         if result == target {
                             score += result;
                             run = false;
                         }
-
                     }
                 }
-
-
-
             }
         }
     }

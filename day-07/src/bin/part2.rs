@@ -1,16 +1,6 @@
 use itertools::{iproduct, Itertools};
-use utils::read_input_to_string;
-
-fn mul(a: i32, b: i32) -> i32 {
-    a * b
-}
-
-fn add(a: i32, b: i32) -> i32 {
-    a + b
-}
-
-
 use std::fmt;
+use utils::read_input_to_string;
 
 enum NamedFunction {
     Add,
@@ -24,8 +14,8 @@ impl NamedFunction {
             NamedFunction::Add => x + y,
             NamedFunction::Mul => x * y,
             NamedFunction::Concat => {
-                let concatenated = format!("{}{}", x, y); // Convert both numbers to strings and concatenate
-                concatenated.parse::<i64>().unwrap() // Parse the concatenated string back to i64
+                let concatenated = format!("{}{}", x, y);
+                concatenated.parse::<i64>().unwrap()
             }
         }
     }
@@ -42,10 +32,14 @@ impl fmt::Debug for NamedFunction {
 }
 
 fn main() {
-    let mut score: i64 = 0;
+    let mut score: i64 = 0; // had to up it
     let input = read_input_to_string(7);
 
-    let functions: Vec<NamedFunction> = vec![NamedFunction::Add, NamedFunction::Mul, NamedFunction::Concat];
+    let functions: Vec<NamedFunction> = vec![
+        NamedFunction::Add,
+        NamedFunction::Mul,
+        NamedFunction::Concat,
+    ];
 
     for line in input.lines() {
         let parts: Vec<&str> = line.split(':').collect();
@@ -54,7 +48,10 @@ fn main() {
             continue;
         }
 
-        let target: i64 = parts[0].trim().parse::<i64>().expect("Failed to parse target value");
+        let target: i64 = parts[0]
+            .trim()
+            .parse::<i64>()
+            .expect("Failed to parse target value");
         let values: Vec<i64> = parts[1]
             .split_whitespace()
             .filter_map(|s| s.parse::<i64>().ok())
@@ -69,10 +66,10 @@ fn main() {
             .map(|_| functions.iter())
             .multi_cartesian_product();
 
-        let mut found = false;
+        let mut run = false;
         for func_combination in func_combinations {
-            let mut result = values[0]; // Start with the first value
-            let mut iter = values.iter().skip(1); // Skip the first value
+            let mut result = values[0];
+            let mut iter = values.iter().skip(1);
 
             for (value, func) in iter.zip(func_combination) {
                 result = func.apply(result, *value);
@@ -80,12 +77,12 @@ fn main() {
 
             if result == target {
                 score += result;
-                found = true;
-                break; // Early exit once a valid combination is found
+                run = true;
+                break;
             }
         }
 
-        if !found {
+        if !run {
             println!("No valid combination found for target: {}", target);
         }
     }
@@ -97,14 +94,12 @@ fn main() {
 mod tests {
     use super::*;
     #[test]
-    fn test_funcs(){
-        assert_eq!(NamedFunction::Concat.apply(1, 2),12);
-        assert_eq!(NamedFunction::Mul.apply(1, 2),2);
-        assert_eq!(NamedFunction::Add.apply(2, 2),4);
-        assert_eq!(NamedFunction::Concat.apply(1, 10),110);
-        assert_eq!(NamedFunction::Concat.apply(200, 200),200200);
-        assert_eq!(NamedFunction::Concat.apply(12125, 73273),1212573273);
-
-
+    fn test_funcs() {
+        assert_eq!(NamedFunction::Concat.apply(1, 2), 12);
+        assert_eq!(NamedFunction::Mul.apply(1, 2), 2);
+        assert_eq!(NamedFunction::Add.apply(2, 2), 4);
+        assert_eq!(NamedFunction::Concat.apply(1, 10), 110);
+        assert_eq!(NamedFunction::Concat.apply(200, 200), 200200);
+        assert_eq!(NamedFunction::Concat.apply(12125, 73273), 1212573273);
     }
 }
