@@ -79,4 +79,13 @@ fn main() {
     if measure_flag {
         println!("Time elapsed: {:?}", t5.duration_since(t6));
     }
+
+    println!("Day 6:");
+    run_command("day-06", "part1");
+    run_command("day-06", "part2");
+
+    let t7 = Instant::now();
+    if measure_flag {
+        println!("Time elapsed: {:?}", t6.duration_since(t7));
+    }
 }
