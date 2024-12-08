@@ -1,0 +1,22 @@
+[workspace]
+members = [
+    "utils",
+    "day-01",
+    "day-02",
+    "day-03",
+    "day-04",
+    "day-05",
+]
+
+[package]
+name = "aoc_2024"
+version = "0.1.0"
+edition = "2021"
+
+
+[[bin]]
+name = "meta"
+path = "src/main.rs"  # Points to the meta-binary
+
+[workspace.metadata]
+default-run = "meta"  # Sets "meta" as the default binary for `cargo run`

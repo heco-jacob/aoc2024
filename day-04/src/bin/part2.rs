@@ -1,10 +1,8 @@
-mod utils;
-
-use crate::utils::read_input_to_string;
+use utils::read_input_to_string;
 
 fn main() {
     let mut score: i32 = 0;
-    let input = read_input_to_string(4, Some(false));
+    let input = read_input_to_string(4);
     let mut xmas_array: Vec<Vec<char>> = Vec::new();
 
     for i in input.lines() {
@@ -35,9 +33,6 @@ fn main() {
                     char,
                     xmas_array[c + 1][r - 1]
                 );
-                println!("prim:{}", prim);
-                println!("sec:{}", sec);
-                println!("col:{}, row: {}", c, r);
                 if (prim == "MAS" || prim == "SAM") && (sec == "MAS" || sec == "SAM") {
                     score += 1;
                 }
@@ -45,13 +40,7 @@ fn main() {
         }
     }
 
-    // for ss in search_strings{
-    //     let sss = ss.chars().collect::<Vec<char>>();
-    //     let a = sss.windows(4).filter(|x| *x==['X', 'M', 'A', 'S'] || *x==['S','A','M','X']).count();
-    //     score+=a as i32;
-    // }
-
-    println!("{}", score);
+    println!("Part 2: {}", score);
 }
 
 #[cfg(test)]
@@ -59,7 +48,7 @@ mod tests {
     use super::*;
     #[test]
     fn it_works() {
-        let input = read_input_to_string(4, Some(true));
+        let input = read_input_to_string(4);
         let mut xmas_array: Vec<Vec<char>> = Vec::new();
 
         for i in input.lines() {
@@ -69,16 +58,6 @@ mod tests {
             }
             xmas_array.push(vec_line);
         }
-        // MMMSXXMASM
-        // MSAMXMSMSA
-        // AMXSXMAAMM
-        // MSAMASMSMX
-        // XMASAMXAMM
-        // XXAMMXXAMA
-        // SMSMSASXSS
-        // SAXAMASAAA
-        // MAMMMXMMMM
-        // MXMXAXMASX
         assert_eq!(xmas_array[0][0], 'M');
         assert_eq!(xmas_array[0][1], 'M');
         assert_eq!(xmas_array[0][2], 'M');

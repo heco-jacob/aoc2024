@@ -1,11 +1,9 @@
-mod utils;
-
-use crate::utils::read_input_to_string;
 use regex::{Captures, Regex};
+use utils::read_input_to_string;
 
 fn main() {
     let mut score: i32 = 0;
-    let input = read_input_to_string(3, Some(false));
+    let input = read_input_to_string(3);
 
     // mut(x,y)
     let re = Regex::new(r"mul\((\d{1,3}),(\d{1,3})\)").unwrap();
