@@ -35,6 +35,7 @@ fn main() {
     let measure_flag = env::args().any(|arg| arg == "-measure" || arg == "-m");
     let mut times = vec![0];
     let t0 = Instant::now();
+
     println!("Day 1:");
     run_command("day-01", "part1");
     run_command("day-01", "part2");
@@ -71,6 +72,22 @@ fn main() {
 
     times.push(t0.elapsed().as_millis());
 
+    println!("Day 7:");
+    run_command("day-07", "part1");
+    run_command("day-07", "part2");
+
+    times.push(t0.elapsed().as_millis());
+
+
+
+
+
+
+
+
+
+
+
     println!("-----------------------------");
     let new_times: Vec<_> = times
         .windows(2)
@@ -86,12 +103,4 @@ fn main() {
         println!("{:<10} {:<15}", day + 1, time);
     }
 
-    println!("Day 6:");
-    run_command("day-06", "part1");
-    run_command("day-06", "part2");
-
-    let t7 = Instant::now();
-    if measure_flag {
-        println!("Time elapsed: {:?}", t6.duration_since(t7));
-    }
 }
