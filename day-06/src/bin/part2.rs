@@ -137,6 +137,7 @@ fn simulate(grid: Vec<Vec<char>>, obstacle_pos: (i32, i32)) -> i32 {
                 //     Some(obstacle_pos),
                 //     Some(80 as u64),
                 // );
+
             }
         }
     }
