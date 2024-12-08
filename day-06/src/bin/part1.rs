@@ -99,7 +99,7 @@ fn main() {
                 visited.insert(position);
             }
         }
-        show_grid(grid.clone(), position, *cur_cursor, None, Some(500 as u64));
+        // show_grid(grid.clone(), position, *cur_cursor, None, Some(500 as u64));
     }
     visited.insert(starting_pos);
     score = visited.len() as i32;

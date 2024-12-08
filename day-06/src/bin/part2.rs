@@ -130,13 +130,13 @@ fn simulate(grid: Vec<Vec<char>>, obstacle_pos: (i32, i32)) -> i32 {
                 visited_vec.push(position);
                 visited.insert(position);
 
-                show_grid(
-                    grid.clone(),
-                    position,
-                    *cur_cursor,
-                    Some(obstacle_pos),
-                    Some(80 as u64),
-                );
+                // show_grid(
+                //     grid.clone(),
+                //     position,
+                //     *cur_cursor,
+                //     Some(obstacle_pos),
+                //     Some(80 as u64),
+                // );
             }
         }
     }
