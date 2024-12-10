@@ -13,3 +13,4 @@ path = "src/bin/part2.rs"
 
 [dependencies]
 utils = { path = "../utils" }
+counter = "0.6.0"

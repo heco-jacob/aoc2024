@@ -78,13 +78,11 @@ fn main() {
 
     times.push(t0.elapsed().as_millis());
 
+    println!("Day 8:");
+    run_command("day-08", "part1");
+    run_command("day-08", "part2");
 
-
-
-
-
-
-
+    times.push(t0.elapsed().as_millis());
 
 
 
