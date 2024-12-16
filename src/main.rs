@@ -84,7 +84,11 @@ fn main() {
 
     times.push(t0.elapsed().as_millis());
 
+    println!("Day 9:");
+    run_command("day-09", "part1");
+    run_command("day-09", "part2");
 
+    times.push(t0.elapsed().as_millis());
 
     println!("-----------------------------");
     let new_times: Vec<_> = times
@@ -100,5 +104,4 @@ fn main() {
     for (day, time) in new_times.iter().enumerate() {
         println!("{:<10} {:<15}", day + 1, time);
     }
-
 }
