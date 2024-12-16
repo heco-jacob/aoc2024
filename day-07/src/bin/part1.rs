@@ -69,5 +69,5 @@ fn main() {
         }
     }
 
-    println!("Final Score: {}", score);
+    println!("Part 1: {}", score);
 }

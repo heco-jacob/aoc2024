@@ -58,7 +58,7 @@ fn main() {
             .collect();
 
         if values.len() < 2 {
-            println!("Insufficient values in line: {}", line);
+            // println!("Insufficient values in line: {}", line);
             continue;
         }
 
@@ -83,11 +83,12 @@ fn main() {
         }
 
         if !run {
-            println!("No valid combination found for target: {}", target);
+            // println!("No valid combination found for target: {}", target);
+            continue;
         }
     }
 
-    println!("Final Score: {}", score);
+    println!("Part 2: {}", score);
 }
 
 #[cfg(test)]

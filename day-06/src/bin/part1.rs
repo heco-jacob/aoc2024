@@ -31,10 +31,10 @@ fn show_grid(
             .enumerate()
             .map(|(j, &c)| {
                 if i == guard_x as usize && j == guard_y as usize {
-                    format!("{}", cursor.to_string().red()) // colored demands string
+                    format!("{}", cursor.to_string().red())
                 } else if let Some((obs_x, obs_y)) = obstacle_position {
                     if i == obs_x as usize && j == obs_y as usize {
-                        format!("{}", c.to_string().blue()) // colored demands string
+                        format!("{}", c.to_string().blue())
                     } else {
                         format!("{}", c)
                     }
@@ -99,7 +99,7 @@ fn main() {
                 visited.insert(position);
             }
         }
-        // show_grid(grid.clone(), position, *cur_cursor, None, Some(500 as u64));
+        // show_grid(grid.clone(), position, *cur_cursor, None, Some(500 as u64)); // TODO: add toggle on print
     }
     visited.insert(starting_pos);
     score = visited.len() as i32;

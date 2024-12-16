@@ -38,7 +38,7 @@ fn main() {
     let charvec: Vec<char> = input.chars().collect();
     let mut sequence: Vec<Option<u32>> = Vec::new();
     let mut num: u32 = 0;
-    println!("{}", input);
+    // println!("{}", input);
 
     for (idx, c) in charvec.iter().enumerate() {
         if let Some(digit) = c.to_digit(10) {
@@ -54,7 +54,7 @@ fn main() {
             }
         }
     }
-    println!("Sequence {:?}", sequence);
+    // println!("Sequence {:?}", sequence);
 
     let new = sort_and_slice(sequence.clone());
 
@@ -64,6 +64,5 @@ fn main() {
         }
     }
 
-    println!("SEQ: {:?}", new);
-    println!("{}", score);
+    println!("Part 1: {}", score);
 }

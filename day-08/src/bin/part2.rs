@@ -68,5 +68,5 @@ fn main() {
         }
     }
     score += antinodes.len() as i32;
-    println!("Final Score: {}", score);
+    println!("Part 2: {}", score);
 }

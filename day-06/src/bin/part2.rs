@@ -213,11 +213,11 @@ fn main() {
     let mut used = Vec::new();
     let unique_pairs: HashSet<_> = visited_vec.into_iter().collect();
 
-    println!("Number of possible nodes {:?}", unique_pairs.len());
+    // println!("Number of possible nodes {:?}", unique_pairs.len());
     for (i, node) in unique_pairs.iter().enumerate() {
-        if i % 100 == 0 {
-            println!("One line number {i} processing {node:?}");
-        }
+        // if i % 100 == 0 {
+        //     println!("One line number {i} processing {node:?}");
+        // }
         let mut my_grid = grid.clone();
 
         let i = node.0 as usize;

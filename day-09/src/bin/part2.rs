@@ -39,7 +39,6 @@ fn main() {
         }
     }
     // println!("String: {}", sequence_to_string(&seq));
-    println!("SEQ len: {:?}", seq.len());
 
     let mut file_ids: Vec<_> = seq
         .iter()
@@ -74,8 +73,6 @@ fn main() {
         }
     }
 
-    println!("SEQ LEN AFTER: {:?}", seq.len());
-
     // scoring
     let s = sequence_to_string(&seq);
     for (idx, c) in s.chars().enumerate() {
@@ -85,5 +82,5 @@ fn main() {
         }
     }
 
-    println!("{}", score);
+    println!("Part 2: {}", score);
 }
