@@ -9,7 +9,6 @@ fn sequence_to_string(seq: &Vec<(Option<i32>, i32, bool)>) -> String {
             let char_rep = id.unwrap_or(0).to_string(); // Use 0 as default if no ID
             result.push_str(&char_rep.repeat(*size as usize));
         } else {
-            // Space blocks are represented by '.'
             result.push_str(&".".repeat(*size as usize));
         }
     }
@@ -19,12 +18,8 @@ fn sequence_to_string(seq: &Vec<(Option<i32>, i32, bool)>) -> String {
 fn main() {
     let mut score: i64 = 0;
     let input: String = read_input_to_string(9);
-
-    // 2333133121414131402
-    // 00...111...2...333.44.5555.6666.777.888899
-
     let charvec: Vec<char> = input.chars().collect();
-    // println!("{}", input);
+
     let mut seq: Vec<(Option<i32>, i32, bool)> = vec![]; // (id: i32, size: i32, is_file: bool)
 
     let mut id = 0;
@@ -38,7 +33,6 @@ fn main() {
             }
         }
     }
-    // println!("String: {}", sequence_to_string(&seq));
 
     let mut file_ids: Vec<_> = seq
         .iter()
@@ -47,6 +41,8 @@ fn main() {
         .collect();
 
     for id in file_ids.iter().rev() {
+        println!("String: {}", sequence_to_string(&seq));
+
         if let Some(file_index) = seq.iter().position(|(seq_id, _, _)| seq_id == &Some(*id)) {
             let file = seq[file_index];
             if let Some(space_index) = seq
@@ -66,9 +62,7 @@ fn main() {
                     let new_space: (Option<i32>, i32, bool) = (None, diff, false);
                     seq.insert(space_index + 1, new_space);
                 }
-                // println!("{}", sequence_to_string(&seq));
             } else {
-                // println!("No space for ID {}", id);
             }
         }
     }
